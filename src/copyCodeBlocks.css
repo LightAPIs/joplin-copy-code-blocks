@@ -1,0 +1,41 @@
+.joplin-editable {
+	position: relative;
+}
+
+.copy-code-blocks-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	display: none;
+	background-color: transparent;
+	border: 0;
+	padding: 0;
+}
+
+.copied-code-blocks .copy-code-blocks-button-icon {
+	stroke: #6aba7b;
+}
+
+.copy-code-blocks-button-icon {
+	display: block;
+	width: 24px;
+	height: 24px;
+	stroke: #133975;
+	fill: none;
+	stroke-width: 2;
+	stroke-linecap: square;
+	stroke-linejoin: miter;
+}
+
+.copy-code-blocks-button-icon:hover {
+	stroke: #2765ca;
+}
+
+.copied-code-blocks .copy-code-blocks-button-icon:hover {
+	stroke: #a6da4d;
+}
+
+.joplin-editable:hover .copy-code-blocks-button {
+	display: block !important;
+}
