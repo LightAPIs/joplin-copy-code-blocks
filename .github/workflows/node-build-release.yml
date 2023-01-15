@@ -55,7 +55,7 @@ jobs:
           config_file: .github/scripts/tag-changelog-config.js
       - name: Create Release
         uses: ncipollo/release-action@v1
-        with: ${{ steps.changelog_text.outputs.changes }}
+        with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Release ${{ steps.get_version.outputs.value }}
           prerelease: false
