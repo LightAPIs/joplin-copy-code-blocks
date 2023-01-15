@@ -1,0 +1,75 @@
+name: node-build-release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout/@v3
+      - name: Use Node.js 16.16.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.16.0'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build Package
+        run: |
+          npm run dist
+      - name: Npm Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+      - name: Get Name
+        id: get_name
+        uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: ./package.json
+          property: name
+      - name: Get Version
+        id: get_version
+        uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: ./package.json
+          property: version
+      - name: Get Id
+        id: get_id
+        uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: ./src/manifest.json
+      - name: Create Zip File
+        uses: vimtor/action-zip@v1
+        with:
+          files: ./publish/${{ steps.get_id.outputs.value }}.jpl
+          dest: ./result.zip
+      - name: Create ChangeLog Text
+        id: changelog_text
+        uses: loopwerk/tag-changelog@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config_file: .github/scripts/tag-changelog-config.js
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: ${{ steps.changelog_text.outputs.changes }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./result.zip
+          asset_name: ${{ steps.get_name.outputs.value }}_v${{ steps.get_version.outputs.value }}.zip
+          asset_content_type: application/zip
