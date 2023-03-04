@@ -14,7 +14,19 @@ Add a copy button to the code blocks.
 
 ## Installation
 
-Go to the [Releases](https://github.com/LightAPIs/joplin-copy-code-blocks/releases/latest) to download the plugin package `zip` file and unzip it. And Open [Joplin](https://joplinapp.org/), go to **Tools > Options > Plugins**, click **Manage your plugins > Install from file**, select the previously unzipped `jpl` file. Finally, restart the application.
+### Automatic
+
+1. Open [Joplin](https://joplinapp.org/), go to **Tools > Options > Plugins**.
+2. Search for `Copy Code Blocks`.
+3. Install this plugin.
+4. Finally, restart the application.
+
+### Manual
+
+1. Go to the [Releases](https://github.com/LightAPIs/joplin-copy-code-blocks/releases/latest) to download the plugin package `zip` file and unzip it.
+2. Open [Joplin](https://joplinapp.org/), go to **Tools > Options > Plugins**.
+3. Click **Manage your plugins > Install from file**, select the previously unzipped `jpl` file.
+4. Finally, restart the application.
 
 ## Building
 

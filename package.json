@@ -7,6 +7,8 @@
     "update": "npm install -g generator-joplin && yo joplin --update"
   },
   "license": "MIT",
+  "homepage": "https://github.com/LightAPIs/joplin-copy-code-blocks",
+  "repository": "LightAPIs/joplin-copy-code-blocks",
   "keywords": [
     "joplin-plugin"
   ],
