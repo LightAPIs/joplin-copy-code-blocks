@@ -13,6 +13,11 @@
 	padding: 0;
 }
 
+.copy-code-blocks-button.copy-code-blocks-info-mermaid {
+	top: unset;
+	bottom: 0;
+}
+
 .copied-code-blocks .copy-code-blocks-button-icon {
 	stroke: #6aba7b;
 }

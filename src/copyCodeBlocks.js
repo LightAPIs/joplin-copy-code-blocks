@@ -17,7 +17,7 @@ module.exports.default = function (context) {
       markdownIt.renderer.rules.fence = function (tokens, idx, options, env, self) {
         const defaultHtml = defaultRender(tokens, idx, options, env, self);
         const token = tokens[idx];
-        const { tag } = token;
+        const { tag, info } = token;
 
         if (tag !== 'code') {
           return defaultHtml;
@@ -39,7 +39,9 @@ module.exports.default = function (context) {
 
         //? Because assets will not be loaded under Rich Text editor, add `style="display: none;"`
         const copyButtonHtml = `
-          <button class="copy-code-blocks-button hljs" id="${btnId}" onclick="${postMessageCode}" title="Copy" aria-label="Copy code" style="display: none;">${btnIcon}</button>
+          <button class="copy-code-blocks-button copy-code-blocks-info-${
+            info || 'normal'
+          } hljs" id="${btnId}" onclick="${postMessageCode}" title="Copy" aria-label="Copy code" style="display: none;">${btnIcon}</button>
         `;
 
         return insertHtml(defaultHtml, markerIndex, copyButtonHtml);
