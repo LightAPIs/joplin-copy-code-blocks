@@ -1,8 +1,5 @@
 window.copyCodeBlocksPostMessage = function (ele, pluginId) {
-  const text = document
-    .querySelector('#' + ele.id)
-    .closest('.joplin-editable')
-    .querySelector('.joplin-source').textContent;
+  const text = ele.closest('.joplin-editable').querySelector('.joplin-source').textContent;
   try {
     webviewApi.postMessage(pluginId, text).then(response => {
       console.info('Got response in content script: ' + response);
