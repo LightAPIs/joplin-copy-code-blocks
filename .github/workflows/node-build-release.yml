@@ -25,29 +25,22 @@ jobs:
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
-      - name: Get name
-        id: get_name
-        uses: ashley-taylor/read-json-property-action@v1.0
-        with:
-          path: ./package.json
-          property: name
-      - name: Get version
-        id: get_version
-        uses: ashley-taylor/read-json-property-action@v1.0
-        with:
-          path: ./package.json
-          property: version
-      - name: Get id
-        id: get_id
-        uses: ashley-taylor/read-json-property-action@v1.0
-        with:
-          path: ./src/manifest.json
-          property: id
+      - name: Get plugin info
+        id: info
+        run: |
+          package_file=./package.json
+          manifest_file=./src/manifest.json
+          plugin_name=$(cat $package_file | jq -r '.name')
+          plugin_version=$(cat $manifest_file | jq -r '.version')
+          plugin_id=$(cat $manifest_file | jq -r '.id')
+          echo "name=${plugin_name}" >> $GITHUB_OUTPUT
+          echo "version=${plugin_version}" >> $GITHUB_OUTPUT
+          echo "id=${plugin_id}" >> $GITHUB_OUTPUT
       - name: Create zip file
         uses: vimtor/action-zip@v1.2
         with:
-          files: ./publish/${{ steps.get_id.outputs.value }}.jpl
-          dest: ./${{ steps.get_name.outputs.value }}_v${{ steps.get_version.outputs.value }}.zip
+          files: ./publish/${{ steps.info.outputs.id }}.jpl
+          dest: ./${{ steps.info.outputs.name }}_v${{ steps.info.outputs.version }}.zip
       - name: Create changeLog text
         id: changelog_text
         uses: loopwerk/tag-changelog@v1
@@ -58,8 +51,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: Release ${{ steps.get_version.outputs.value }}
+          name: Release ${{ steps.info.outputs.version }}
           prerelease: false
           draft: false
-          artifacts: ./${{ steps.get_name.outputs.value }}_v${{ steps.get_version.outputs.value }}.zip
+          artifacts: ./${{ steps.info.outputs.name }}_v${{ steps.info.outputs.version }}.zip
           body: ${{ steps.changelog_text.outputs.changes }}
