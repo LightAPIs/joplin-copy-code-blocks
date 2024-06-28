@@ -1,0 +1,55 @@
+name: Relaese
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HTTP_PROXY: ${{ vars.PROXY }}
+      HTTPS_PROXY: ${{ vars.PROXY }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      - name: Setup up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16.20.2'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build package
+        run: |
+          npm run dist
+      - name: Create zip file
+        run: |
+          package_file=./package.json
+          manifest_file=./src/manifest.json
+          plugin_name=$(cat $package_file | jq -r '.name')
+          plugin_version=$(cat $manifest_file | jq -r '.version')
+          mkdir -p release
+          zip -j "./release/${plugin_name}_v${plugin_version}.zip" "./publish/*.jpl"
+      - name: Get git tags
+        id: git_tags
+        run: |
+          current=$(git describe --abbrev=0 --tags)
+          echo "current=${current}" >> $GITHUB_OUTPUT
+          prev=$(git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`)
+          echo "prev=${prev}" >> $GITHUB_OUTPUT
+      - name: Create release
+        uses: akkuman/gitea-release-action@v1
+        env:
+          NODE_OPTIONS: '--experimental-fetch' # if nodejs < 18
+        with:
+          server_url: ${{ vars.SERVER }}
+          files: |-
+            release/**
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Release ${{ steps.git_tags.outputs.current }}
+          body: 'See: [${{ steps.git_tags.outputs.prev }}...${{ steps.git_tags.outputs.current }}](/${{ gitea.repository }}/compare/${{ steps.git_tags.outputs.prev }}...${{ steps.git_tags.outputs.current }}).'
