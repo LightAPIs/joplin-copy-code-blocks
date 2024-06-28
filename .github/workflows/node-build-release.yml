@@ -10,51 +10,51 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout/@v3
-      - name: Use Node.js 16.16.0
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16.16.0'
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
-      - name: Build Package
+      - name: Build package
         run: |
           npm run dist
-      - name: Npm Publish
+      - name: Npm publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-      - name: Get Name
+      - name: Get name
         id: get_name
         uses: ashley-taylor/read-json-property-action@v1.0
         with:
           path: ./package.json
           property: name
-      - name: Get Version
+      - name: Get version
         id: get_version
         uses: ashley-taylor/read-json-property-action@v1.0
         with:
           path: ./package.json
           property: version
-      - name: Get Id
+      - name: Get id
         id: get_id
         uses: ashley-taylor/read-json-property-action@v1.0
         with:
           path: ./src/manifest.json
           property: id
-      - name: Create Zip File
+      - name: Create zip file
         uses: vimtor/action-zip@v1
         with:
           files: ./publish/${{ steps.get_id.outputs.value }}.jpl
           dest: ./${{ steps.get_name.outputs.value }}_v${{ steps.get_version.outputs.value }}.zip
-      - name: Create ChangeLog Text
+      - name: Create changeLog text
         id: changelog_text
         uses: loopwerk/tag-changelog@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config_file: .github/scripts/tag-changelog-config.cjs
-      - name: Create Release
+      - name: Create release
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.ACTION_TOKEN }}
