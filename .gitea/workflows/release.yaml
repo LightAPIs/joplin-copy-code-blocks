@@ -32,7 +32,7 @@ jobs:
           plugin_name=$(cat $package_file | jq -r '.name')
           plugin_version=$(cat $manifest_file | jq -r '.version')
           mkdir -p release
-          zip -j "./release/${plugin_name}_v${plugin_version}.zip" "./publish/*.jpl"
+          zip -jr "./release/${plugin_name}_v${plugin_version}.zip" "./publish" -i "*.jpl"
       - name: Get git tags
         id: git_tags
         run: |
