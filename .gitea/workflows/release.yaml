@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: catthehacker/ubuntu:act-latest
     env:
       HTTP_PROXY: ${{ vars.PROXY }}
       HTTPS_PROXY: ${{ vars.PROXY }}
