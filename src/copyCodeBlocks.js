@@ -4,7 +4,7 @@ function insertHtml(source, index, content) {
   return source.slice(0, index) + content + source.slice(index);
 }
 
-module.exports.default = function (context) {
+exports.default = function (context) {
   const pluginId = context.pluginId;
   return {
     plugin: function (markdownIt, pluginOptions) {
