@@ -8,7 +8,7 @@
   "author": "Light",
   "homepage_url": "https://github.com/LightAPIs/joplin-copy-code-blocks",
   "repository_url": "https://github.com/LightAPIs/joplin-copy-code-blocks",
-  "platforms": ["desktop"],
+  "platforms": ["desktop", "mobile"],
   "keywords": ["Copy", "Code blocks"],
   "categories": ["appearance", "productivity"]
 }
