@@ -48,7 +48,7 @@ exports.default = function (context) {
             ? `
             <button class="copy-code-blocks-button hljs" id="copy-code-blocks-button" style="position: absolute; ${
               info === 'mermaid' ? 'bottom: 0' : 'top: 0'
-            }; right: 0; cursor: pointer; background-color: transparent; border: 0; padding: 0; display: none;" title="Copy" aria-label="Copy code" onclick="const text = this.closest('.joplin-editable').querySelector('.joplin-source').textContent; navigator.clipboard.writeText(text); this.classList.add('copied-code-blocks'); this.title='Copied'; this.querySelector('svg').style.stroke = '#a6da4d';" onmouseenter="this.querySelector('svg').style.stroke = this.classList.contains('copied-code-blocks') ? '#a6da4d' : '#2765ca';" onmouseleave="this.querySelector('svg').style.stroke = this.classList.contains('copied-code-blocks') ? '#6aba7b' : '#133975';">${btnIcon}</button>
+            }; right: 0; cursor: pointer; background-color: transparent; border: 0; padding: 0; display: none;" title="Copy" aria-label="Copy code" onclick="const text = this.closest('.joplin-editable').querySelector('.joplin-source').textContent; window.setTimeout(() => {navigator.clipboard.writeText(text);}, 0); this.classList.add('copied-code-blocks'); this.title='Copied'; this.querySelector('svg').style.stroke = '#a6da4d';" onmouseenter="this.querySelector('svg').style.stroke = this.classList.contains('copied-code-blocks') ? '#a6da4d' : '#2765ca';" onmouseleave="this.querySelector('svg').style.stroke = this.classList.contains('copied-code-blocks') ? '#6aba7b' : '#133975';">${btnIcon}</button>
             `
             : `
           <button class="copy-code-blocks-button copy-code-blocks-info-${
