@@ -57,10 +57,11 @@ exports.default = function (context) {
         `;
 
         const tempHtml = insertHtml(defaultHtml, markerIndex, copyButtonHtml);
-        if (vendor == undefined) {
+        const editableIndex = defaultHtml.indexOf('class="joplin-editable"');
+        if (vendor == undefined && editableIndex > -1) {
           return insertHtml(
             tempHtml,
-            defaultHtml.indexOf('class="joplin-editable"'),
+            editableIndex,
             ` style="position: relative;" onmouseenter="const copyBtn = this.querySelector('#copy-code-blocks-button'); copyBtn.style.display = 'block';" onmouseleave="const copyBtn = this.querySelector('#copy-code-blocks-button'); copyBtn.style.display = 'none';"`
           );
         }
