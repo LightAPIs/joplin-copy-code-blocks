@@ -1,46 +1,46 @@
 .joplin-editable {
-	position: relative;
+  position: relative;
 }
 
 .copy-code-blocks-button {
-	position: absolute;
-	top: 0;
-	right: 0;
-	cursor: pointer;
-	display: none;
-	background-color: transparent;
-	border: 0;
-	padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  display: none;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
 }
 
 .copy-code-blocks-button.copy-code-blocks-info-mermaid {
-	top: unset;
-	bottom: 0;
+  top: unset;
+  bottom: 0;
 }
 
 .copied-code-blocks .copy-code-blocks-button-icon {
-	stroke: #6aba7b;
+  stroke: #6aba7b;
 }
 
 .copy-code-blocks-button-icon {
-	display: block;
-	width: 24px;
-	height: 24px;
-	stroke: #133975;
-	fill: none;
-	stroke-width: 2;
-	stroke-linecap: square;
-	stroke-linejoin: miter;
+  display: block;
+  width: 24px;
+  height: 24px;
+  stroke: #133975;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
 }
 
 .copy-code-blocks-button-icon:hover {
-	stroke: #2765ca;
+  stroke: #2765ca;
 }
 
 .copied-code-blocks .copy-code-blocks-button-icon:hover {
-	stroke: #a6da4d;
+  stroke: #a6da4d;
 }
 
 .joplin-editable:hover .copy-code-blocks-button {
-	display: block !important;
+  display: block !important;
 }
