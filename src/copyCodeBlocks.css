@@ -1,4 +1,4 @@
-.joplin-editable {
+.joplin-editable:has(.copy-code-blocks-button) {
   position: relative;
 }
 
