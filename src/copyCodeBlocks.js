@@ -29,7 +29,7 @@ exports.default = function (context) {
         }
 
         const btnIcon = `
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" class="copy-code-blocks-button-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" class="copy-code-blocks-button-icon" viewBox="0 0 24 24">
             <rect width="12" height="14" x="8" y="7"/>
             <polyline points="16 3 4 3 4 17"/>
           </svg>`;

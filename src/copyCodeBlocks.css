@@ -1,8 +1,15 @@
+:root {
+  --copy-code-blocks-color: #133975;
+  --copy-code-blocks-hover-color: #2765ca;
+  --copy-code-blocks-copied-color: #6aba7b;
+  --copy-code-blocks-copied-hover-color: #a6da4d;
+}
+
 .joplin-editable:has(.copy-code-blocks-button) {
   position: relative;
 }
 
-.copy-code-blocks-button {
+.joplin-editable .copy-code-blocks-button {
   position: absolute;
   top: 0;
   right: 0;
@@ -11,34 +18,35 @@
   background-color: transparent;
   border: 0;
   padding: 0;
+  color: var(--copy-code-blocks-color);
 }
 
-.copy-code-blocks-button.copy-code-blocks-info-mermaid {
+.joplin-editable .copy-code-blocks-button:hover {
+  color: var(--copy-code-blocks-hover-color);
+}
+
+.joplin-editable .copy-code-blocks-button.copied-code-blocks {
+  color: var(--copy-code-blocks-copied-color);
+}
+
+.joplin-editable .copy-code-blocks-button.copied-code-blocks:hover {
+  color: var(--copy-code-blocks-copied-hover-color);
+}
+
+.joplin-editable .copy-code-blocks-button.copy-code-blocks-info-mermaid {
   top: unset;
   bottom: 0;
 }
 
-.copied-code-blocks .copy-code-blocks-button-icon {
-  stroke: #6aba7b;
-}
-
-.copy-code-blocks-button-icon {
+.joplin-editable .copy-code-blocks-button-icon {
   display: block;
   width: 24px;
   height: 24px;
-  stroke: #133975;
+  stroke: currentColor;
   fill: none;
   stroke-width: 2;
   stroke-linecap: square;
   stroke-linejoin: miter;
-}
-
-.copy-code-blocks-button-icon:hover {
-  stroke: #2765ca;
-}
-
-.copied-code-blocks .copy-code-blocks-button-icon:hover {
-  stroke: #a6da4d;
 }
 
 .joplin-editable:hover .copy-code-blocks-button {
