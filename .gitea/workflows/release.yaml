@@ -47,6 +47,12 @@ jobs:
           echo "current=${current}" >> $GITHUB_OUTPUT
           prev=$(git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`)
           echo "prev=${prev}" >> $GITHUB_OUTPUT
+      - name: Create changelog text
+        id: changelog_text
+        uses: dragonish/tag-changelog@v1
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          config_file: ../.gitea/scripts/tag-changelog-config.cjs
       - name: Create release
         uses: akkuman/gitea-release-action@v1
         env:
@@ -57,4 +63,11 @@ jobs:
             release/**
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Release ${{ steps.git_tags.outputs.current }}
-          body: 'See: [${{ steps.git_tags.outputs.prev }}...${{ steps.git_tags.outputs.current }}](/${{ gitea.repository }}/compare/${{ steps.git_tags.outputs.prev }}...${{ steps.git_tags.outputs.current }}).'
+          body: |
+            ${{ steps.changelog_text.outputs.changes }}
+
+            ---
+
+            ## Details
+            
+            See: [${{ steps.git_tags.outputs.prev }}...${{ steps.git_tags.outputs.current }}](/compare/${{ steps.git_tags.outputs.prev }}...${{ steps.git_tags.outputs.current }}).
