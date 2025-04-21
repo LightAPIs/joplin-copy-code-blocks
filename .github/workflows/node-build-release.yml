@@ -48,7 +48,7 @@ jobs:
           dest: ./${{ steps.info.outputs.name }}_v${{ steps.info.outputs.version }}.zip
       - name: Create changeLog text
         id: changelog_text
-        uses: loopwerk/tag-changelog@v1
+        uses: dragonish/tag-changelog@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config_file: .github/scripts/tag-changelog-config.cjs
