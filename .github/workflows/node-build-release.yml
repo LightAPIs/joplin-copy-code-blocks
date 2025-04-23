@@ -31,9 +31,9 @@ jobs:
           plugin_name=$(cat $package_file | jq -r '.name')
           plugin_version=$(cat $manifest_file | jq -r '.version')
           plugin_id=$(cat $manifest_file | jq -r '.id')
-          echo "name=${plugin_name}" >> $GITHUB_OUTPUT
-          echo "version=${plugin_version}" >> $GITHUB_OUTPUT
-          echo "id=${plugin_id}" >> $GITHUB_OUTPUT
+          echo "name=${plugin_name}" >> ${GITHUB_OUTPUT}
+          echo "version=${plugin_version}" >> ${GITHUB_OUTPUT}
+          echo "id=${plugin_id}" >> ${GITHUB_OUTPUT}
       - name: Create zip file
         uses: vimtor/action-zip@v1.2
         with:
