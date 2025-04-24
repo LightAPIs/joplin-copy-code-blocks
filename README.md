@@ -28,6 +28,26 @@ Add a copy button to the code blocks.
 3. Click **Manage your plugins > Install from file**, select the previously unzipped `jpl` file.
 4. Finally, restart the application.
 
+## Custom the button style
+
+You can customize the style of the button by adding content in [`userstyle.css`](https://joplinapp.org/help/apps/custom_css). The plugin provides the following CSS custom variables:
+
+- `--copy-code-blocks-color`: Button color.
+- `--copy-code-blocks-hover-color`: Button hover color.
+- `--copy-code-blocks-copied-color`: Button copied color.
+- `--copy-code-blocks-copied-hover-color`: Button copied hover color.
+
+For example:
+
+```css
+body {
+  --copy-code-blocks-color: #133975;
+  --copy-code-blocks-hover-color: #2765ca;
+  --copy-code-blocks-copied-color: #6aba7b;
+  --copy-code-blocks-copied-hover-color: #a6da4d;
+}
+```
+
 ## Building
 
 The plugin is built using Webpack, which creates the compiled code in `/dist`. A JPL archive will also be created at the root, which can use to distribute the plugin.
