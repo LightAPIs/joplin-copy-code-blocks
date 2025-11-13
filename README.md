@@ -2,11 +2,9 @@
 
 [![Release](https://img.shields.io/github/v/release/LightAPIs/joplin-copy-code-blocks?style=flat-square)](https://github.com/LightAPIs/joplin-copy-code-blocks/releases/latest) [![MIT](https://img.shields.io/github/license/LightAPIs/joplin-copy-code-blocks?style=flat-square)](/LICENSE)
 
-> Joplin Plugin
-
 ## Features
 
-Add a copy button to the code blocks.
+This is a plugin for [Joplin](https://joplinapp.org/). Add a copy button to the code blocks.
 
 ## Preview
 
@@ -32,19 +30,21 @@ Add a copy button to the code blocks.
 
 You can customize the style of the button by adding content in [`userstyle.css`](https://joplinapp.org/help/apps/custom_css). The plugin provides the following CSS custom variables:
 
-- `--copy-code-blocks-color`: Button color.
-- `--copy-code-blocks-hover-color`: Button hover color.
-- `--copy-code-blocks-copied-color`: Button copied color.
-- `--copy-code-blocks-copied-hover-color`: Button copied hover color.
+- `--copy-code-blocks-color`: Button color. *The default value is `#133975`.*
+- `--copy-code-blocks-hover-color`: Button hover color. *The default value is `#2765ca`.*
+- `--copy-code-blocks-copied-color`: Button copied color. *The default value is `#6aba7b`.*
+- `--copy-code-blocks-copied-hover-color`: Button copied hover color. *The default value is `#a6da4d`.*
+- `--copy-code-blocks-top-spacing`: Button top spacing. *The default value is `0px`.*
+- `--copy-code-blocks-right-spacing`: Button right spacing. *The default value is `0px`.*
 
 For example:
 
 ```css
 body {
-  --copy-code-blocks-color: #133975;
-  --copy-code-blocks-hover-color: #2765ca;
-  --copy-code-blocks-copied-color: #6aba7b;
-  --copy-code-blocks-copied-hover-color: #a6da4d;
+  --copy-code-blocks-color: #252d3a;
+  --copy-code-blocks-copied-color: #189463;
+  --copy-code-blocks-top-spacing: 4px;
+  --copy-code-blocks-right-spacing: 4px;
 }
 ```
 

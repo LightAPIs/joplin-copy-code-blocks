@@ -34,10 +34,15 @@ exports.default = function (context) {
             <polyline points="16 3 4 3 4 17"/>
           </svg>`;
 
+        const isMultiline = defaultHtml.trim().includes('\n');
+        const extra = [`copy-code-blocks-info-${info || 'normal'}`];
+        if (!isMultiline) {
+          extra.push('copy-code-blocks-one-line');
+        }
+        const extraClass = extra.join(' ');
+
         const copyButtonHtml = `
-          <button class="copy-code-blocks-button copy-code-blocks-info-${
-            info || 'normal'
-          } hljs" title="Copy" aria-label="Copy code" data-plugin-id="${pluginId}">${btnIcon}</button>
+          <button class="copy-code-blocks-button ${extraClass} hljs" title="Copy" aria-label="Copy code" data-plugin-id="${pluginId}">${btnIcon}</button>
         `;
 
         const tempHtml = insertHtml(defaultHtml, markerIndex, copyButtonHtml);

@@ -3,6 +3,8 @@
   --copy-code-blocks-hover-color: #2765ca;
   --copy-code-blocks-copied-color: #6aba7b;
   --copy-code-blocks-copied-hover-color: #a6da4d;
+  --copy-code-blocks-top-spacing: 0px;
+  --copy-code-blocks-right-spacing: 0px;
 }
 
 .joplin-editable:has(.copy-code-blocks-button) {
@@ -11,14 +13,18 @@
 
 .joplin-editable .copy-code-blocks-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: var(--copy-code-blocks-top-spacing);
+  right: var(--copy-code-blocks-right-spacing);
   cursor: pointer;
   display: none;
   background-color: transparent;
   border: 0;
   padding: 0;
   color: var(--copy-code-blocks-color);
+}
+
+.joplin-editable .copy-code-blocks-button.copy-code-blocks-one-line {
+  top: 0px;
 }
 
 .joplin-editable .copy-code-blocks-button:hover {
